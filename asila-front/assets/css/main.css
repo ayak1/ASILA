@@ -1,0 +1,381 @@
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap");
+:root{
+  --main_color:#C03131;
+  --color-1:#ffffff;
+  --color-2:#3A6335;
+  --color-3:#000000;
+  --color-4:#BF953F;
+  --color-5:#ffffff;
+  --primary_light_color:#fff;
+  --primary_dark_color:#000;
+  --background_color:#EEEFF0;
+  --body_color:#F9F7F7;
+  --top-of-image:rgba(0, 0, 0, 0.57);
+  --fs_xxxs_400: 0.925rem;
+  --fs_xxxs_500:1rem;
+  --fs_xxs_500: 1.175rem;
+  --fs_xs_500: 1.2rem;
+  --fs_s_500: 2.1rem;
+  --fs_l_500: 3.35rem;
+  --fs_m_500: 3rem;
+  --fs_xxxs_800: 1rem;
+  --fs_xxs_700: 1.15rem;
+  --fs_xs_700: 1.475rem; /* add this to media query*/
+  --fs_s_700: 2.2rem;
+  --fs_xxs_800: 1.025rem;
+  --fs_xs_800: 1.375rem;
+  --fs_s_800: 2.1rem;
+  --fs_m_800: 2.3rem;
+  --fs_l_800: 2.7rem;
+  --fs_xl_800: 4rem;
+  --fs_xxl_800: 5.125rem;
+  --fs_s_900:1rem;
+}
+.length0{
+  margin-top: 150px;
+}
+.textColorGradient{
+  background: rgb(191,149,63);
+  background: linear-gradient(90deg,
+  rgb(184, 140, 53) 0%,
+   rgba(252,246,186,1) 18%,
+    rgba(179,135,40,1) 31%,
+     rgba(179,135,40,1) 75%,
+      rgb(197, 192, 136) 87%,
+       rgb(149, 102, 19) 98%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+.smallTextColorGradient{
+  background: rgb(191,149,63);
+  background: linear-gradient(225deg, rgba(191,149,63,1) 0%, rgba(85,82,52,1) 32%, rgba(179,135,40,1) 56%, rgba(94,90,54,1) 74%, rgba(170,119,28,1) 98%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+
+}
+.bgColorGradient{
+  background: rgb(191,149,63);
+background: linear-gradient(90deg, rgba(191,149,63,1) 0%, rgba(252,246,186,1) 18%, rgba(179,135,40,1) 31%, rgba(179,135,40,1) 75%, rgba(251,245,183,1) 87%, rgba(170,119,28,1) 98%);
+}
+.borderGradient{
+
+}
+.iconBgColorGradient{
+  background: rgb(191,149,63);
+background: linear-gradient(-87deg, rgba(191,149,63,1) 0%, rgba(252,246,186,1) 35%, rgba(179,135,40,1) 56%, rgba(251,245,183,1) 74%, rgba(170,119,28,1) 98%);
+}
+*{
+  font-family: "Tajawal",sans-serif;
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+img{
+  object-fit: cover;
+}
+ul{
+  list-style-type: none;
+}
+a{
+  text-decoration: none;
+}
+.drop-shadow{
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+}
+body{
+  background-color: var(--body_color);
+}
+.pointer{
+  cursor: pointer;
+}
+.top-of-image{
+  background: var(--top-of-image);
+  width: 100%;
+  height: 100%;
+}
+.topImage {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Adjust the background color and opacity as needed */
+}
+.border-ra-10{
+  border-radius: 10px;
+}
+.border-ra-20{
+  border-radius: 20px;
+}
+.text-align-ar{
+  text-align: right;
+}
+.text-align-en{
+  text-align: left;
+}
+.hero_text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: var(--primary_light_color);
+}
+.title{
+  text-align: center;
+  color: var(--color-2);
+  font-size: var(--fs_s_800);
+  font-weight: 800;
+  letter-spacing: -0.92px;
+  margin-top: calc(136px + 8vh);
+  margin-bottom: 124px;
+}
+.secondTitle{
+  text-align: center;
+  font-size: var(--fs_xs_800);
+  font-weight: 800;
+  letter-spacing: -0.69px;
+  margin-top: 64px;
+}
+.rtl {
+  direction: rtl;
+}
+
+.ltr {
+  direction: ltr;
+}
+
+.main_container{
+  width: 100%;
+  padding: 0 378px;
+}
+
+._id_page_wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.container{
+  width: 100%;
+}
+
+@media(max-width: 1900px) {
+  :root{
+    --fs_xxxs_400: 0.925rem;
+  --fs_xxxs_500:1rem;
+  --fs_xxs_500: 1.175rem;
+  --fs_xs_500: 1.2rem;
+  --fs_s_500: 2.1rem;
+  --fs_l_500: 3.35rem;
+  --fs_m_500: 3rem;
+  --fs_xxxs_800: 1rem;
+  --fs_xxs_700: 1.15rem;
+  --fs_xs_700: 1.475rem; /* add this to media query*/
+  --fs_s_700: 2.2rem;
+  --fs_xxs_800: 1.025rem;
+  --fs_xs_800: 1.375rem;
+  --fs_s_800: 2.1rem;
+  --fs_m_800: 2.3rem;
+  --fs_l_800: 2.7rem;
+  --fs_xl_800: 4rem;
+  --fs_xxl_800: 5.125rem;
+  --fs_s_900:1rem;
+  }
+  .main_container{
+    padding: 0 370px;
+  }
+}
+@media(max-width: 1700px) {
+  :root{
+    --fs_xxxs_400: 0.625rem;
+    --fs_xxxs_500: 1rem;
+    --fs_xxs_500: 1.275rem;
+    --fs_xs_500: 1.3rem;
+    --fs_s_500: 2.3rem;
+    --fs_l_500: 3.6rem;
+    --fs_m_500: 3.1rem;
+    --fs_xxs_700: 1.25rem;
+    --fs_xs_700: 1.775rem; /* add this to media query*/
+    --fs_s_700: 2.3rem;
+    --fs_xxs_800: 1.125rem;
+    --fs_xs_800: 1.675rem;
+    --fs_s_800: 2.3rem;
+    --fs_m_800: 2.5rem;
+    --fs_l_800: 2.9rem;
+    --fs_xl_800: 4.175rem;
+    --fs_xxl_800: 5.425rem;
+    --fs_s_900:1.25rem;
+
+  }
+  .main_container{
+    padding: 0 310px;
+  }
+}
+@media(max-width: 1500px) {
+  :root{
+    --fs_xxxs_400: 0.625rem;
+    --fs_xxxs_500: 1rem;
+    --fs_xxs_500: 1.175rem;
+    --fs_xs_500: 1.3rem;
+    --fs_s_500: 2.3rem;
+    --fs_l_500: 3.6rem;
+    --fs_m_500: 3.1rem;
+    --fs_xxs_700: 1.25rem;
+    --fs_xs_700: 1.775rem; /* add this to media query*/
+    --fs_s_700: 2.3rem;
+    --fs_xxs_800: 1.125rem;
+    --fs_xs_800: 1.675rem;
+    --fs_s_800: 2rem;
+    --fs_m_800: 2.5rem;
+    --fs_l_800: 2.9rem;
+    --fs_xl_800: 4.175rem;
+    --fs_xxl_800: 5.425rem;
+    --fs_s_900:1.25rem;
+  }
+  .main_container{
+    padding: 0 250px;
+  }
+  .title{
+    margin-top: 124px;
+    margin-bottom: 100px;
+  }
+}
+@media(max-width: 1300px) {
+  :root{
+    --fs_xxxs_400: 0.625rem;
+    --fs_xxxs_500: 1rem;
+    --fs_xxs_500: 1.075rem;
+    --fs_xs_500: 1.3rem;
+    --fs_s_500: 2.1rem;
+    --fs_l_500: 3.4rem;
+    --fs_m_500: 3rem;
+    --fs_xxs_700: 1.25rem;
+    --fs_xs_700: 1.775rem; /* add this to media query*/
+    --fs_s_700: 2.1rem;
+    --fs_xxs_800: 1.125rem;
+    --fs_xs_800: 1.675rem;
+    --fs_s_800: 1.6rem;
+    --fs_m_800: 2.3rem;
+    --fs_l_800: 2.7rem;
+    --fs_xl_800: 4rem;
+    --fs_xxl_800: 5.325rem;
+    --fs_s_900:1.25rem;
+  }
+  .main_container{
+    padding: 0 200px;
+  }
+  .title{
+    margin-top: 110px;
+    margin-bottom: 76px;
+  }
+}
+@media(max-width: 1200px) {
+  .main_container{
+    padding: 0 180px;
+  }
+  .title{
+    margin-top: calc(100px + 8vh);
+    margin-bottom: 64px;
+  }
+}
+@media(max-width: 1100px) {
+  :root{
+    --fs_xxxs_400: 0.625rem;
+    --fs_xxxs_500:0.7rem;
+    --fs_xxs_500: 1rem;
+    --fs_xs_500: 1rem;
+    --fs_s_500: 2rem;
+    --fs_l_500: 3.1rem;
+    --fs_m_500: 2.7rem;
+    --fs_xxs_700: 0.8rem;
+    --fs_xs_700: 1.275rem; /* add this to media query*/
+    --fs_s_700: 2rem;
+    --fs_xxs_800: 0.9rem;
+    --fs_xs_800: 1.275rem;
+    --fs_s_800: 1.5rem;
+    --fs_m_800: 1.9rem;
+    --fs_l_800: 2.5rem;
+    --fs_xl_800: 3.8rem;
+    --fs_xxl_800: 4.7rem;
+    --fs_s_900:1.25rem;
+  }
+  .main_container{
+    padding: 0 130px;
+  }
+  .title{
+    margin-top:  calc(80px + 8vh);
+    margin-bottom: 48px;
+  }
+}
+
+@media(max-width: 800px) {
+  :root{
+    --fs_xxxs_400: 0.6rem;
+    --fs_xxxs_500:0.7rem;
+    --fs_xxs_500: 0.9rem;
+    --fs_xs_500: 1rem;
+    --fs_s_500: 2rem;
+    --fs_l_500: 3.1rem;
+    --fs_m_500: 2.7rem;
+    --fs_xxs_700: 0.8rem;
+    --fs_xs_700: 1.275rem; /* add this to media query*/
+    --fs_s_700: 2rem;
+    --fs_xxs_800: 0.9rem;
+    --fs_xs_800: 1.275rem;
+    --fs_s_800: 1.6rem;
+    --fs_m_800: 1.6rem;
+    --fs_l_800: 2.3rem;
+    --fs_xl_800: 3.8rem;
+    --fs_xxl_800: 4.7rem;
+    --fs_s_900:1.25rem;
+  }
+  .main_container{
+    padding: 0 80px;
+  }
+  .title{
+    margin-top:  calc(60px + 8vh);
+    margin-bottom: 40px;
+  }
+}
+
+@media(max-width: 600px) {
+  .main_container{
+    padding: 0 50px;
+  }
+  .title{
+    margin-top:  calc(50px + 8vh);
+    margin-bottom: 38px;
+  }
+}
+@media(max-width: 500px) {
+  :root{
+    --fs_xxxs_400: 0.6rem;
+    --fs_xxxs_500:0.7rem;
+    --fs_xxs_500: 0.8rem;
+    --fs_xs_500: 0.9rem;
+    --fs_s_500: 2rem;
+    --fs_l_500: 3.1rem;
+    --fs_m_500: 2.7rem;
+    --fs_xxs_700: 0.8rem;
+    --fs_xs_700: 1.275rem; /* add this to media query*/
+    --fs_s_700: 2rem;
+    --fs_xxs_800: 0.6rem;
+    --fs_xs_800: 1.275rem;
+    --fs_s_800: 1.2rem;
+    --fs_m_800: 1.2rem;
+    --fs_l_800: 1.9rem;
+    --fs_xl_800: 3.4rem;
+    --fs_xxl_800: 4.3rem;
+    --fs_s_900:1.25rem;
+  }
+  .main_container{
+    padding: 0 30px;
+  }
+  .title{
+    margin-top:  calc(40px + 8vh);
+    margin-bottom: 30px;
+  }
+}
+
+

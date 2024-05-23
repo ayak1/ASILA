@@ -1,0 +1,7 @@
+سلايدر الرئيسية////////////////////////////////
+ال meta
+blog
+packages contains and not contains
+about tags
+filtering
+add is popular to the packages

@@ -1,0 +1,265 @@
+<template>
+  <div class="main_container" v-if="selectedApartment">
+    <div class="section_one" >
+      <div class="cover_img border-ra-10">
+        <img class="border-ra-10" :src="selectedApartment.cover_image" :alt="$t('picture_of_the_house')">
+      </div>
+      <div class="text" >
+        <div class="section_top" :class="{ 'rtl': $isRTL(), 'ltr': !$isRTL() }">
+          <h1 class="apartment_title">{{ selectedApartment.title }}</h1>
+          <p class="apartment_description">{{ selectedApartment.description }}</p>
+        </div>
+        <div class="section_bottom" :class="{ 'rtl': $isRTL(), 'ltr': !$isRTL() }">
+          <div v-if="selectedApartment.is_for_rent">
+            <p class="price_title">{{$t('rent')}}</p>
+            <p class="apartment_price">{{selectedApartment.rent_per_month}}</p>
+          </div>
+          <div v-else>
+            <p class="price_title">{{$t('price')}}</p>
+            <p class="apartment_price" >{{selectedApartment.sell_price}}</p>
+            <p class="payment_details_title">{{$t('payment_details')}}</p>
+            <p class="payment_details" v-if="selectedApartment.in_installments">{{$t('payment_in_installments')}}</p>
+            <p class="payment_details" v-else>{{$t('payment_not_in_installments')}}</p>
+          </div>
+        <div>
+            <div class="hasServices">
+              <HasService v-if="selectedApartment.has_parking==1" :content="selectedApartment.parking_number">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 2H13C16.3137 2 19 4.68629 19 8C19 11.3137 16.3137 14 13 14H10V20H6V2ZM10 6V10H13C14.1046 10 15 9.1046 15 8C15 6.89543 14.1046 6 13 6H10Z" fill="#C03131"/>
+                </svg>
+              </HasService>
+              <HasService :content="selectedApartment.room_number">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.6 11.0008C8.25413 11.0008 9.6 9.65491 9.6 8.00078C9.6 6.34666 8.25413 5.00078 6.6 5.00078C4.94588 5.00078 3.6 6.34666 3.6 8.00078C3.6 9.65491 4.94588 11.0008 6.6 11.0008ZM19.8 6.20078H11.4C11.0685 6.20078 10.8 6.46928 10.8 6.80078V12.2008H2.4V4.40078C2.4 4.06928 2.1315 3.80078 1.8 3.80078H0.6C0.2685 3.80078 0 4.06928 0 4.40078V17.6008C0 17.9323 0.2685 18.2008 0.6 18.2008H1.8C2.1315 18.2008 2.4 17.9323 2.4 17.6008V15.8008H21.6V17.6008C21.6 17.9323 21.8685 18.2008 22.2 18.2008H23.4C23.7315 18.2008 24 17.9323 24 17.6008V10.4008C24 8.08103 22.1198 6.20078 19.8 6.20078Z" fill="#C03131"/>
+                </svg>
+              </HasService>
+              <HasService :content="selectedApartment.space">
+                <svg width="21" height="15" viewBox="0 0 21 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16.5709 7V5.89C16.7309 5.71 16.9442 5.46667 17.2109 5.16C17.6309 4.69333 17.9409 4.34 18.1409 4.1C18.5876 3.56667 18.8676 3.20333 18.9809 3.01C19.0942 2.81 19.1509 2.59 19.1509 2.35C19.1509 2.15 19.0776 1.98333 18.9309 1.85C18.7842 1.71667 18.5976 1.65 18.3709 1.65C17.9776 1.65 17.5442 1.81 17.0709 2.13L16.5209 1.33C17.1876 0.803333 17.8842 0.54 18.6109 0.54C19.1909 0.54 19.6542 0.696666 20.0009 1.01C20.3409 1.31667 20.5109 1.74 20.5109 2.28C20.5109 2.68 20.3776 3.1 20.1109 3.54C19.8509 3.97333 19.3409 4.62 18.5809 5.48C18.3942 5.69333 18.2576 5.85 18.1709 5.95H20.4409V7H16.5709Z" fill="#C03131"/>
+                  <path d="M2.87422 6.8C3.64755 6.05333 4.61422 5.68 5.77422 5.68C6.56089 5.68 7.25422 5.84667 7.85422 6.18C8.46755 6.51333 8.89422 6.96 9.13422 7.52C9.40089 6.98667 9.85422 6.54667 10.4942 6.2C11.1342 5.85333 11.8209 5.68 12.5542 5.68C14.6742 5.68 15.7342 6.97333 15.7342 9.56V15H12.9942V10.32C12.9942 9.45333 12.8742 8.84667 12.6342 8.5C12.4076 8.14 12.0142 7.96 11.4542 7.96C10.5609 7.96 9.85422 8.3 9.33422 8.98L9.31422 15H6.59422V10C6.59422 9.24 6.46089 8.71333 6.19422 8.42C5.94089 8.11333 5.48755 7.96 4.83422 7.96C4.10089 7.96 3.52089 8.13333 3.09422 8.48V15H0.374219V5.92H2.69422L2.87422 6.8Z" fill="#C03131"/>
+                </svg>
+              </HasService>
+              <HasService :content="selectedApartment.baths_number">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16.7432 4.82656L9.95156 11.6182C9.54895 12.0208 8.89582 12.0208 8.4932 11.6182L8.0068 11.1318C7.60418 10.7292 7.60418 10.0761 8.0068 9.67344L8.01152 9.66871C6.5493 7.94094 6.50074 5.41738 7.86586 3.63676C7.35152 3.31234 6.74266 3.125 6.09125 3.125C4.24875 3.125 2.75 4.62375 2.75 6.46625V19.625H0V6.46625C0 3.10738 2.73238 0.375 6.09125 0.375C7.67809 0.375 9.12527 0.985156 10.2102 1.98289C11.7528 1.48832 13.4973 1.78953 14.7937 2.88652L14.7984 2.8818C15.2011 2.47918 15.8542 2.47918 16.2568 2.8818L16.7432 3.3682C17.1458 3.77082 17.1458 4.42395 16.7432 4.82656ZM16.5 7.9375C16.5 8.31721 16.1922 8.625 15.8125 8.625C15.4328 8.625 15.125 8.31721 15.125 7.9375C15.125 7.55779 15.4328 7.25 15.8125 7.25C16.1922 7.25 16.5 7.55779 16.5 7.9375ZM17.875 7.9375C17.875 7.55779 18.1828 7.25 18.5625 7.25C18.9422 7.25 19.25 7.55779 19.25 7.9375C19.25 8.31721 18.9422 8.625 18.5625 8.625C18.1828 8.625 17.875 8.31721 17.875 7.9375ZM22 7.9375C22 8.31721 21.6922 8.625 21.3125 8.625C20.9328 8.625 20.625 8.31721 20.625 7.9375C20.625 7.55779 20.9328 7.25 21.3125 7.25C21.6922 7.25 22 7.55779 22 7.9375ZM15.125 9.3125C15.125 9.69221 14.8172 10 14.4375 10C14.0578 10 13.75 9.69221 13.75 9.3125C13.75 8.93279 14.0578 8.625 14.4375 8.625C14.8172 8.625 15.125 8.93279 15.125 9.3125ZM17.1875 8.625C17.5672 8.625 17.875 8.93279 17.875 9.3125C17.875 9.69221 17.5672 10 17.1875 10C16.8078 10 16.5 9.69221 16.5 9.3125C16.5 8.93279 16.8078 8.625 17.1875 8.625ZM20.625 9.3125C20.625 9.69221 20.3172 10 19.9375 10C19.5578 10 19.25 9.69221 19.25 9.3125C19.25 8.93279 19.5578 8.625 19.9375 8.625C20.3172 8.625 20.625 8.93279 20.625 9.3125ZM13.75 10.6875C13.75 11.0672 13.4422 11.375 13.0625 11.375C12.6828 11.375 12.375 11.0672 12.375 10.6875C12.375 10.3078 12.6828 10 13.0625 10C13.4422 10 13.75 10.3078 13.75 10.6875ZM15.125 10.6875C15.125 10.3078 15.4328 10 15.8125 10C16.1922 10 16.5 10.3078 16.5 10.6875C16.5 11.0672 16.1922 11.375 15.8125 11.375C15.4328 11.375 15.125 11.0672 15.125 10.6875ZM19.25 10.6875C19.25 11.0672 18.9422 11.375 18.5625 11.375C18.1828 11.375 17.875 11.0672 17.875 10.6875C17.875 10.3078 18.1828 10 18.5625 10C18.9422 10 19.25 10.3078 19.25 10.6875ZM13.75 12.0625C13.75 11.6828 14.0578 11.375 14.4375 11.375C14.8172 11.375 15.125 11.6828 15.125 12.0625C15.125 12.4422 14.8172 12.75 14.4375 12.75C14.0578 12.75 13.75 12.4422 13.75 12.0625ZM17.875 12.0625C17.875 12.4422 17.5672 12.75 17.1875 12.75C16.8078 12.75 16.5 12.4422 16.5 12.0625C16.5 11.6828 16.8078 11.375 17.1875 11.375C17.5672 11.375 17.875 11.6828 17.875 12.0625ZM13.75 13.4375C13.75 13.8172 13.4422 14.125 13.0625 14.125C12.6828 14.125 12.375 13.8172 12.375 13.4375C12.375 13.0578 12.6828 12.75 13.0625 12.75C13.4422 12.75 13.75 13.0578 13.75 13.4375ZM16.5 13.4375C16.5 13.8172 16.1922 14.125 15.8125 14.125C15.4328 14.125 15.125 13.8172 15.125 13.4375C15.125 13.0578 15.4328 12.75 15.8125 12.75C16.1922 12.75 16.5 13.0578 16.5 13.4375ZM15.125 14.8125C15.125 15.1922 14.8172 15.5 14.4375 15.5C14.0578 15.5 13.75 15.1922 13.75 14.8125C13.75 14.4328 14.0578 14.125 14.4375 14.125C14.8172 14.125 15.125 14.4328 15.125 14.8125ZM13.75 16.1875C13.75 16.5672 13.4422 16.875 13.0625 16.875C12.6828 16.875 12.375 16.5672 12.375 16.1875C12.375 15.8078 12.6828 15.5 13.0625 15.5C13.4422 15.5 13.75 15.8078 13.75 16.1875Z" fill="#C03131"/>
+                </svg>
+              </HasService>
+              <HasService :content="selectedApartment.pools_number">
+                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M24.375 16.75H23.75C22.7328 16.75 21.9609 16.4211 21.559 16.0508C21.2113 15.7301 20.791 15.5 20.318 15.5H19.6812C19.2082 15.5 18.7879 15.7301 18.4402 16.0508C18.0391 16.4211 17.2672 16.75 16.25 16.75C15.2328 16.75 14.4609 16.4211 14.059 16.0508C13.7113 15.7301 13.291 15.5 12.818 15.5H12.1812C11.7082 15.5 11.2879 15.7301 10.9402 16.0508C10.5391 16.4211 9.76719 16.75 8.75 16.75C7.73281 16.75 6.96094 16.4211 6.55898 16.0508C6.21133 15.7301 5.79102 15.5 5.31797 15.5H4.68125C4.2082 15.5 3.78789 15.7301 3.44023 16.0508C3.03906 16.4211 2.26719 16.75 1.25 16.75H0.625C0.279687 16.75 0 17.0297 0 17.375V18.625C0 18.9703 0.279687 19.25 0.625 19.25H1.25C2.75859 19.25 4.09062 18.7738 5 18.0063C5.90938 18.7742 7.24141 19.25 8.75 19.25C10.2586 19.25 11.5906 18.7738 12.5 18.0063C13.4094 18.7742 14.7414 19.25 16.25 19.25C17.7586 19.25 19.0906 18.7738 20 18.0063C20.9094 18.7742 22.2414 19.25 23.75 19.25H24.375C24.7203 19.25 25 18.9703 25 18.625V17.375C25 17.0297 24.7203 16.75 24.375 16.75ZM8.75 15.5V11.75H16.25V15.5C16.9969 15.5 17.4555 15.2594 17.5934 15.132C17.9516 14.8016 18.3434 14.5719 18.75 14.4262V5.5C18.75 4.81094 19.3109 4.25 20 4.25C20.6891 4.25 21.25 4.81094 21.25 5.5V6.125C21.25 6.47031 21.5297 6.75 21.875 6.75H23.125C23.4703 6.75 23.75 6.47031 23.75 6.125V5.5C23.75 3.43203 22.068 1.75 20 1.75C17.932 1.75 16.25 3.43203 16.25 5.5V9.25H8.75V5.5C8.75 4.81094 9.31094 4.25 10 4.25C10.6891 4.25 11.25 4.81094 11.25 5.5V6.125C11.25 6.47031 11.5297 6.75 11.875 6.75H13.125C13.4703 6.75 13.75 6.47031 13.75 6.125V5.5C13.75 3.43203 12.068 1.75 10 1.75C7.93203 1.75 6.25 3.43203 6.25 5.5V14.4258C6.65664 14.5715 7.04844 14.8016 7.40664 15.1316C7.54453 15.2594 8.00313 15.5 8.75 15.5Z" fill="#C03131"/>
+                </svg>
+              </HasService>
+            </div>
+          </div>
+          </div>
+       </div>
+
+    </div>
+    <div class="grid-container" v-if="selectedApartment.images && selectedApartment.images.length !== 0">
+      <!-- <div class="grid-item" :class="'grid-item-' + (index + 1)" v-for="(img, index) in selectedApartment.images" :key="index">
+        <img class="border-ra-10" :src="img.path" alt="images of home rooms"/>
+      </div> -->
+      <div class="sec1">
+        <div class="sec1_1">
+          <div class="image border-ra-10" v-if="selectedApartment.images[0]" >
+            <img class="border-ra-10" :src="selectedApartment.images[0].path" alt="">
+          </div>
+          <div class="image border-ra-10" v-if="selectedApartment.images[1]" >
+            <img class="border-ra-10" :src="selectedApartment.images[1].path" alt="">
+          </div>
+        </div>
+        <div class="sec1_2 image border-ra-10" v-if="selectedApartment.images[2]" >
+          <img class="border-ra-10" :src="selectedApartment.images[2].path" alt="">
+        </div>
+      </div>
+      <div class="sec2">
+        <div class="image border-ra-10" v-if="selectedApartment.images[3]" >
+          <img class="border-ra-10" :src="selectedApartment.images[3].path" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapGetters, mapActions, mapMutations, mapState } from 'vuex';
+
+export default {
+  computed: {
+    ...mapState('apartments', ['selectedApartment']),
+  },
+  watch: {
+    '$i18n.locale': function(newVal, oldVal) {
+      this.fetchApartmentData()
+    }
+  },
+  methods: {
+    ...mapActions('apartments', ['fetch_apartment_by_id']),
+    async fetchApartmentData() {
+      const apartmentId = this.$route.params.id;
+      await this.fetch_apartment_by_id({ apartmentId });
+    },
+  },
+  created() {
+    if (this.selectedApartment.length === 0) {
+      this.fetchApartmentData();
+    }
+  },
+};
+</script>
+
+<style scoped>
+.section_bottom .hasServices{
+  margin-top: 32px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+}
+.section_one {
+  width: 100%;
+  margin-top: 236px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+.section_one .apartment_title {
+  font-size: var(--fs_xs_700);
+  font-weight: 700;
+}
+.section_one .text{
+  width: calc(50% - 12px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.section_one .text .apartment_description {
+  line-height: 180%;
+  letter-spacing: -2.3%;
+  font-size: var(--fs_xxs_500);
+  font-weight: 500;
+  margin-top: 40px;
+}
+.section_one .text .priceDetails{
+  display: flex;
+}
+.payment_details_title , .price_title{
+  font-size: var(--fs_xxs_800);
+  font-weight: 800;
+  margin-top: 12px;
+}
+.cover_img {
+  width: calc(50% - 12px);
+  height: 554px;
+}
+.cover_img img {
+  width: 100%;
+  height: 100%;
+}
+.grid-container {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+}
+.grid-container .sec1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 65%;
+  gap: 24px;
+}
+.grid-container .sec1 .sec1_1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 24px;
+  height: 400px;
+}
+.grid-container .sec1 .sec1_1 .image{
+  width: calc(50% - 12px);
+  height: 400px;
+
+}
+.grid-container .sec1 .sec1_1 .image img{
+  width: 100%;
+  height: 100%;
+}
+.grid-container .sec1 .sec1_2{
+  height: 400px;
+  width: 100%;
+}
+.grid-container .sec1 .sec1_2 img{
+  height: 100%;
+  width: 100%;
+}
+.grid-container .sec2{
+  width: 35%;
+  height: calc(400px * 2 + 24px);
+}
+.grid-container .sec2 .image{
+  height: 100%;
+  width: 100%;
+}
+.grid-container .sec2 img{
+  width: 100%;
+  height: 100%;
+}
+@media (max-width:1000px){
+  .grid-container{
+    display: flex;
+    flex-direction: column;
+  }
+  .grid-container .sec1{
+    width: 100%;
+  }
+  .grid-container .sec1 .sec1_1{
+    width: 100%;
+  }
+  .grid-container .sec1 .sec1_1 .image{
+    width: 50%;
+  }
+  .grid-container .sec2{
+    width: 100%;
+    height: 400px;
+  }
+}
+@media (max-width:800px){
+  .section_bottom .hasServices{
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+  .section_one{
+    flex-direction: column-reverse;
+    margin-top: 150px;
+  }
+  .section_one .cover_img{
+    width: 100%;
+    height: 400px;
+  }
+  .section_one .text{
+    width: 100%;
+  }
+}
+@media (max-width:500px){
+  .grid-container .sec1 .sec1_1{
+    height: 250px;
+  }
+  .grid-container .sec1 .sec1_1 .image{
+    height: 250px;
+  }
+  .grid-container .sec1 .sec1_2{
+    height: 250px;
+  }
+  .section_one .cover_img{
+    height: 250px;
+  }
+  .grid-container .sec2{
+    height: 250px;
+  }
+}
+</style>
