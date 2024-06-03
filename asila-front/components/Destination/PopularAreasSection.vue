@@ -33,6 +33,7 @@ export default {
     fetchPopAreas(){
       const cityId = this.$route.query.cityId
       this.fetchPopularAreas({cityId:cityId})
+      console.log("fetched")
     }
   },
   async created() {
@@ -54,4 +55,5 @@ export default {
   align-items: center;
   gap: 24px;
 }
+
 </style>

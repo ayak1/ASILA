@@ -9,7 +9,7 @@
      </div>
       <div v-else class="length0">
         <p>
-          hotels list not available now, but you can contact us and we will book for you in any hotel you want jsut contact us
+          restaurants list not available now, but you can contact us and we will book for you in any hotel you want jsut contact us
         </p>
       </div>
   </div>

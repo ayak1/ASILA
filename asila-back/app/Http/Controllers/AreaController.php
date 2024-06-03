@@ -52,6 +52,7 @@ class AreaController extends Controller
                 'id' => $popularArea->id,
                 'name' => $translation ? $translation->name : null,
                 'description' => $translation ? $translation->description : null,
+                'cover_image' => asset('storage/' . $popularArea->images->firstWhere('is_cover', true)->path),
                 // 'tags' => $formattedTags,
                 'images' => $formattedImages,
             ];

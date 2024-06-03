@@ -127,7 +127,7 @@ export default {
     width: 100%;
   }
   .lang_link{
-    color: var(--main_color);
+    color: var(--color-2);
     font-size: var(--fs_xs_700);
     font-weight: 700;
     padding: 10px;

@@ -12,6 +12,7 @@ export const mutations = {
     state.areas = areas;
   },
   setPopularAreas(state, popularAreas) {
+    console.log("setPopularAreas",popularAreas)
     state.popularAreas = popularAreas;
   },
 };
@@ -21,6 +22,7 @@ export const actions = {
     try {
       const lang = this.app.i18n.locale;
       const popularAreas = await areasApi.getPopularArea(cityId,lang);
+      console.log("fetch popular",popularAreas)
       commit('setPopularAreas', popularAreas);
     } catch (error) {
       console.error('Error fetching popular areas:', error);

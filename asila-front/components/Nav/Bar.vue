@@ -194,13 +194,13 @@ nav ul{
   }
   .toggle-button{
     position: absolute;
-    left: 50px;
+    left: 80px;
   }
 
 }
 @media (max-width: 800px) {
   .toggle-button{
-    left: 20px;
+    left: 40px;
   }
 }
 @media (max-width: 650px) {

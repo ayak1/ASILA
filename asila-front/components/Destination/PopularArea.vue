@@ -38,9 +38,14 @@ export default{
     width: 100%;
     height: 100%;
   }
-
   .popular_area p{
     font-size: 1.25rem;
     font-weight: 800;
+  }
+  @media (max-width:800px){
+    .popular_area .imageWrapper{
+      width: 120px;
+      height: 120px;
+    }
   }
 </style>
