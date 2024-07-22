@@ -113,6 +113,8 @@ export default {
   letter-spacing: -0.552px;
   text-align: center;
   color: var(--color-3);
+  width: 150px;
+  margin-bottom: 8px;
 }
 @media (max-width:1150px) {
   .drop_down .drop_down_list {

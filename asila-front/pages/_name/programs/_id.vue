@@ -1,7 +1,7 @@
 <!-- packages/_id.vue -->
 <template>
   <div class=" _id_page_wrapper main_container" :class="{ 'rtl': $isRTL(), 'ltr': !$isRTL() }">
-    <div class="container">
+    <div class="container" v-if="selectedProgram">
       <h1 class="title">{{selectedProgram.title}}</h1>
       <CoverImage :cover_image="selectedProgram.cover_image" />
       <p class="full_description">
@@ -33,7 +33,6 @@ export default {
      fetchProgramData() {
       const programId = this.$route.params.id;
       this.fetch_program_by_id({ programId });
-      // this.localSelectedPackage = await this.getSelectedPackage();
     },
   },
   async created() {

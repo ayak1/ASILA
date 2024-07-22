@@ -28,11 +28,6 @@ class CityController extends Controller
                 $query->where('locale_id', $locale->id);
             },
             'images',
-            // 'tags' => function ($query) use ($locale) {
-            //     $query->with(['translations' => function ($query) use ($locale) {
-            //         $query->where('locale_id', $locale->id);
-            //     }]);
-            // },
         ])->get();
 
         $formattedCities = $cities->map(function ($city) {
@@ -62,7 +57,9 @@ class CityController extends Controller
             ];
         });
 
-        return response()->json(['cities' => $formattedCities]);
+        return response()->json([
+            'cities' => $formattedCities
+        ]);
     }
 
     public function getCity($Id,$lang  = null){

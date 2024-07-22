@@ -24,7 +24,6 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     "@/plugins/rtl.js",
-    "@/plugins/redirectLang.js",
     { src: '@/plugins/carousel.js', mode: 'client' }
   ],
 
@@ -42,17 +41,27 @@ export default {
     '@nuxtjs/i18n',
 
   ],
+  router: {
+    middleware: ['i18n']
+  },
   i18n: {
     locales: [
       { code: 'en', iso: 'en-US', file: 'en-US.js', dir: 'ltr' },
       { code: 'ar', iso: 'ar-SY', file: 'ar-SY.js', dir: 'rtl' },
       { code: 'tr', iso: 'tr-TR', file: 'tr-TR.js', dir: 'ltr' }
     ],
-    strategy:"prefix_and_default",
-    defaultLocale: ({ store }) => store.getters.getLangSelected,
-    langDir:"locales",
+    strategy: "prefix_and_default",
+    defaultLocale: ({ store }) => store.getters['language/getSelectedLang'],
+    langDir: "locales",
     vueI18n: {
       fallbackLocale: 'en',
+    },
+    lazy: true,
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      alwaysRedirect: false,
+      fallbackLocale: 'en'
     }
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

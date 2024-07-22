@@ -1,6 +1,6 @@
 <!-- components/BigCard.vue -->
 <template>
-  <div class="card_wrapper border-ra-10 ">
+  <div class="card_wrapper border-ra-10 " >
     <div class="imgWrapper">
       <img :src="serviceCard.cover_image" alt="" class="cover">
     </div>
@@ -48,13 +48,15 @@ export default {
   methods:{
     ...mapMutations('packages', ['setSelectedPackage']),
     ...mapMutations('programs', ['setSelectedProgram']),
-    ...mapActions('packages', ['fetch_selected_package']),
-    ...mapActions('programs', ['fetch_selected_program']),
+    ...mapActions('packages', ['fetchSelectedPackage']),
+    ...mapActions('programs', ['fetchSelectedProgram']),
     async goToDetailsPage(itemSelected) {
+      console.log("card big/goToDetailsPage",itemSelected)
+
       if(!this.isProgram){
-        await this.fetch_selected_package(itemSelected)
+        await this.fetchSelectedPackage(itemSelected)
       }else{
-        await this.fetch_selected_program(itemSelected)
+        await this.fetchSelectedProgram(itemSelected.id)
       }
       const path = this.$route.path;
       this.$router.push({

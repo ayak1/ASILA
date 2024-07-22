@@ -69,5 +69,8 @@ export default {
   programs:'programlar:',
   activities:'Eğlence aktiviteleri:',
   footer_contact:'En uygun fiyatlarla bilgi ve rezervasyon için bizimle iletişime geçin',
-  footer_description:'Size özel fiyatlarla harika çevrimiçi rezervasyon hizmetleri sunuyoruz. Tüm değerli müşterilerimize konforlu ve farklı bir deneyim sunmak için çalışıyoruz. Ekibimiz, ayrıntılarınıza en yüksek düzeyde kalite ve özen göstermeye kendini adamıştır. İster rahatlama ister macera arıyor olun, Size mümkün olan en iyi deneyimi uygun fiyatlarla sunmak için buradayız. bizi şimdi ara!'
+  footer_description:'Size özel fiyatlarla harika çevrimiçi rezervasyon hizmetleri sunuyoruz. Tüm değerli müşterilerimize konforlu ve farklı bir deneyim sunmak için çalışıyoruz. Ekibimiz, ayrıntılarınıza en yüksek düzeyde kalite ve özen göstermeye kendini adamıştır. İster rahatlama ister macera arıyor olun, Size mümkün olan en iyi deneyimi uygun fiyatlarla sunmak için buradayız. bizi şimdi ara!',
+  footer_company_title: 'ASILA Turizm Hizmetleri',
+  "subscribe": 'Abone Ol"',
+  "email_address": "E-posta Adresi"
 };

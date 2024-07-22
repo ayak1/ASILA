@@ -30,7 +30,9 @@
         "files":[
             "app/Helpers/TranslationsHelpers.php",
             "app/Helpers/TagHelpers.php",
-            "app/Helpers/ImageHelpers.php"
+            "app/Helpers/ImageHelpers.php",
+            "app/Helpers/LocaleHelpers.php",
+            "app/Helpers/ActivityHelpers.php"
         ]
     },
     "autoload-dev": {

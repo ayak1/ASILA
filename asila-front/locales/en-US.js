@@ -69,5 +69,8 @@ export default {
   programs:'programs:',
   activities:'Fun activities:',
   footer_contact:'For inquiries and reservations at the best prices, contact us',
-  footer_description:'We provide you with great online reservation services at special prices. We strive to provide a comfortable and distinctive experience for all our valued customers. Our team is committed to providing the highest levels of quality and care for your details. Whether you are looking for relaxation or adventure, We are here to provide you with the best possible experience at affordable prices. call us now!'
+  footer_description:'We provide you with great online reservation services at special prices. We strive to provide a comfortable and distinctive experience for all our valued customers. Our team is committed to providing the highest levels of quality and care for your details. Whether you are looking for relaxation or adventure, We are here to provide you with the best possible experience at affordable prices. call us now!',
+  footer_company_title:'ASILA Tourism Services',
+  subscribe:'subscribe',
+  email_address:'email address'
 };

@@ -8,14 +8,14 @@
         </svg>
       </p>
       <div :class="{ show: isShowen, hide: !isShowen }" v-show="isShowen" class="drop_down_lang_list border-ra-10" @click.stop>
-        <div @click="toggleDropDown">
-          <nuxt-link class="lang_link pointer" :to="switchLocalePath('en')">EN</nuxt-link>
+        <div @click="changeLanguage('en')">
+          <span class="lang_link pointer">EN</span>
         </div>
-        <div @click="toggleDropDown" >
-          <nuxt-link class="lang_link pointer" :to="switchLocalePath('ar')">AR</nuxt-link>
+        <div @click="changeLanguage('ar')">
+          <span class="lang_link pointer">AR</span>
         </div>
-        <div @click="toggleDropDown">
-          <nuxt-link class="lang_link pointer"  :to="switchLocalePath('tr')">TR</nuxt-link>
+        <div @click="changeLanguage('tr')">
+          <span class="lang_link pointer">TR</span>
         </div>
       </div>
     </div>
@@ -43,19 +43,25 @@ export default {
         this.isShowen = false;
       }
     },
+    changeLanguage(lang) {
+      const newRoute = this.switchLocalePath(lang);
+      this.$store.dispatch('language/fetchSelectedLang', lang);
+      this.$i18n.setLocale(lang);
+      this.$router.push(newRoute);
+    }
   },
   mounted() {
-    if(process.client){
+    if (process.client) {
       window.addEventListener('click', this.closeDropDownOnOutsideClick);
       window.addEventListener('scroll', this.closeDropDownOnScroll);
     }
   },
   beforeDestroy() {
-    if(process.client){
+    if (process.client) {
       window.removeEventListener('click', this.closeDropDownOnOutsideClick);
       window.removeEventListener('scroll', this.closeDropDownOnScroll);
     }
-  },
+  }
 };
 </script>
 

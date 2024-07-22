@@ -4,7 +4,7 @@
   <div class="destinationPage">
     <DestinationHero />
     <div class="main_container ">
-    <DestinationPopularAreasSection />
+    <!-- <DestinationPopularAreasSection /> -->
     <DestinationOurTourismServicesSection />
    </div>
   </div>

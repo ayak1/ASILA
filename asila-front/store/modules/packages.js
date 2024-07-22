@@ -35,7 +35,7 @@ export const actions = {
       console.error('Error fetching packages by city:', error);
     }
   },
-  async fetch_selected_package({commit,state},packageSelected){
+  async fetchSelectedPackage({commit,state},packageSelected){
     await commit('setSelectedPackage', packageSelected);
   },
   async fetch_package_by_id({commit},{packageId}){

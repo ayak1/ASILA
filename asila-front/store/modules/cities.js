@@ -1,4 +1,3 @@
-// store/modules/cities.js
 import * as citiesApi from '~/api/cities';
 const localStorageKey = 'selectedCity';
 
@@ -11,10 +10,16 @@ export const mutations = {
   setCities(state, cities) {
     state.cities = cities;
   },
-  setSelectedCity(state, city){
+  setSelectedCity(state, city) {
     state.selectedCity = city;
     if (process.client) {
       localStorage.setItem(localStorageKey, JSON.stringify(city));
+    }
+  },
+  clearSelectedCity(state) {
+    state.selectedCity = null;
+    if (process.client) {
+      localStorage.removeItem(localStorageKey);
     }
   }
 };
@@ -22,18 +27,16 @@ export const mutations = {
 export const actions = {
   async fetchCities({ commit }) {
     try {
-      const lang = this.app.i18n.locale;
+      const lang = this.$i18n.locale;
       const cities = await citiesApi.getCities(lang);
       commit('setCities', cities);
     } catch (error) {
+      console.error('Error fetching cities:', error);
     }
-  },
-  async fetchSelectedCity({ commit,state }, city) {
-    commit('setSelectedCity', city);
   },
   async fetchCityById({ commit }, { id }) {
     try {
-      const lang = this.app.i18n.locale;
+      const lang = this.$i18n.locale;
       const cityById = await citiesApi.getCityById(id, lang);
       commit('setSelectedCity', cityById);
     } catch (error) {
@@ -44,10 +47,10 @@ export const actions = {
 
 export const getters = {
   getCities: (state) => state.cities,
-  getSelectedCity: (state) =>{
+  getSelectedCity: (state) => {
     if (process.client) {
-      return JSON.parse(localStorage.getItem(localStorageKey)) || null
+      return JSON.parse(localStorage.getItem(localStorageKey)) || null;
     }
     return state.selectedCity || null;
   },
-}
+};

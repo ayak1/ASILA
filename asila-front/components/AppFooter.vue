@@ -25,14 +25,13 @@
               </div>
             </div>
             <div class="subscribe ">
-                <button class="drop-shadow iconBgColorGradient">subscribe</button>
-                <input type="email" required placeholder="email address">
+                <button class="drop-shadow iconBgColorGradient">{{$t('subscribe')}}</button>
+                <input type="email" required :placeholder="$t('email_address')">
             </div>
           </div>
             <NuxtLink class="logo" :to="localePath('/')">
               <img src="@/assets/imgs/logo.svg" alt="">
-              <h1 class="textColorGradient">للخدمات السياحية
-                ASILA</h1>
+              <h1 class="textColorGradient">{{$t('footer_company_title')}}</h1>
             </NuxtLink>
         </div>
         <div class="bottom">

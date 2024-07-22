@@ -37,6 +37,8 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+
+# Custom file to be ignored
 points.txt
 # TypeScript v1 declaration files
 typings/

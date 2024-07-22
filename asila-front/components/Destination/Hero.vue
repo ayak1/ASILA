@@ -1,47 +1,43 @@
-<!-- components/DestinationHero -->
 <template>
   <div v-if="selectedCity" class="heroOfPage">
-    <div  class="top-of-image topImage"></div>
+    <div class="top-of-image topImage"></div>
     <img v-if="selectedCity.cover_image" class="coverImage top-of-image" :src="selectedCity.cover_image" :alt="selectedCity.name">
-    <div class="hero_text main_container" >
+    <div class="hero_text main_container">
       <p class="cityName textColorGradient">{{ selectedCity.name }}</p>
       <p class="description">{{ selectedCity.description }}</p>
-      <p class="hero_call">{{ $t('hero_call')}}</p>
+      <p class="hero_call">{{ $t('hero_call') }}</p>
     </div>
   </div>
 </template>
 
 <script>
-import {mapGetters,mapActions,mapMutations,mapState} from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   computed: {
-    isRTL() {
-      return this.$i18n.locale === 'ar';
-    },
-    ...mapState('cities',['selectedCity']),
+    ...mapState('cities', ['selectedCity']),
   },
   watch: {
-  '$i18n.locale': function(newVal, oldVal) {
-    this.fetchCity()
-  }
+    '$route': 'fetchCity',
+    '$i18n.locale': 'fetchCity'
   },
   methods: {
     ...mapActions('cities', ['fetchCityById']),
-    ...mapMutations('cities', ['setSelectedCity']),
-
-   fetchCity() {
-      const cityId = this.$route.query.cityId
-      this.fetchCityById({ id: cityId });
+    async fetchCity() {
+      const cityId = this.$route.query.cityId;
+      if (cityId) {
+        await this.fetchCityById({ id: cityId });
+      }
     },
   },
-  async created(){
-    if(this.$store.state.cities.selectedCity == null){
-      await this.fetchCity()
-    }
+  async created() {
+    await this.fetchCity();
   },
 }
 </script>
+
+
+
 
 <style>
 .heroOfPage {

@@ -1,18 +1,25 @@
 // store/modules/programs.js
 
 import * as programsApi from '~/api/programs';
+
 const localStorageKey = 'selectedProgram';
 
 export const state = () => ({
   programs: [],
-  selectedProgram:[],
+  currentPage: 1,
+  lastPage: 1,
+  totalPrograms: 0,
+  selectedProgram: [],
 });
 
 export const mutations = {
-  setPrograms(state, programs) {
+  setPrograms(state, { programs, meta }) {
     state.programs = programs;
+    state.currentPage = meta.current_page;
+    state.lastPage = meta.last_page;
+    state.totalPrograms = meta.total;
   },
-  setSelectedProgram(state, programSelected){
+  setSelectedProgram(state, programSelected) {
     state.selectedProgram = programSelected;
     if (process.client) {
       localStorage.setItem(localStorageKey, JSON.stringify(programSelected));
@@ -21,17 +28,25 @@ export const mutations = {
 };
 
 export const actions = {
-  async fetch_programs_by_city({ commit },{cityId}) {
+  async fetchProgramsByCity({ commit }, { cityId }) {
     try {
       const lang = this.app.i18n.locale;
-      const programs = await programsApi.getProgramsByCity(cityId,lang);
-      commit('setPrograms', programs);
+      const { programs, meta } = await programsApi.getProgramsByCity(cityId, lang);
+      commit('setPrograms', { programs, meta });
     } catch (error) {
       console.error('Error fetching programs:', error);
+      throw error;
     }
   },
-  async fetch_selected_program({commit,state},programSelected){
-    await commit('setSelectedProgram', programSelected);
+  async fetchSelectedProgram({ commit }, programId) {
+    try {
+      const lang = this.app.i18n.locale;
+      const programSelected = await programsApi.getProgram(programId, lang);
+      commit('setSelectedProgram', programSelected);
+    } catch (error) {
+      console.error('Error fetching selected program:', error);
+      throw error;
+    }
   },
   async fetch_program_by_id({commit},{programId}){
     try{
@@ -46,11 +61,12 @@ export const actions = {
 
 export const getters = {
   getProgramsByCity: (state) => state.programs,
-  getSelectedProgram: (state) =>{
+  getSelectedProgram: (state) => {
+    console.log("state/getSelectedProgram")
+
     if (process.client) {
       return JSON.parse(localStorage.getItem(localStorageKey)) || null;
     }
-    return state.programSelected || null;
+    return state.selectedProgram;
   },
 };
-

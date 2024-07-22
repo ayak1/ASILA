@@ -28,13 +28,14 @@ export default {
   },
   methods:{
     ...mapMutations('programs', ['setPrograms']),
-    ...mapActions('programs', ['fetch_programs_by_city']),
+    ...mapActions('programs', ['fetchProgramsByCity']),
     async programsData(){
       const cityId = this.$route.query.cityId
-      await this.fetch_programs_by_city({cityId})
+      await this.fetchProgramsByCity({cityId})
     }
   },
   async created(){
+    console.log("created/programs/index")
     await this.programsData()
   }
 }
