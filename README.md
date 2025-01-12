@@ -12,59 +12,49 @@ Note: Ensure you have Node.js, npm, PHP, Composer, and a web server (e.g., Apach
 
 Clone the Repository:
 
-bash
-Copy code
-git clone https://github.com/ayak1/ASILA.git
-cd ASILA
-Backend Setup (Laravel):
+    ```bash
+    git clone https://github.com/ayak1/ASILA.git
+    cd ASILA
+## Backend Setup (Laravel):
 
-Navigate to the backend directory:
-bash
-Copy code
-cd asila-back
-Install dependencies:
-bash
-Copy code
-composer install
-Copy the example environment file and set your environment variables:
-bash
-Copy code
-cp .env.example .env
-Generate an application key:
-bash
-Copy code
-php artisan key:generate
-Configure your .env file with database credentials and other necessary settings.
-Run database migrations:
-bash
-Copy code
-php artisan migrate
-Start the Laravel development server:
-bash
-Copy code
-php artisan serve
-Frontend Setup (Nuxt.js):
+1. Navigate to the backend directory:
+    ```bash
+    cd asila-back
+2. Install dependencies:
+    ```bash
+    composer install
+3. Copy the example environment file and set your environment variables:
+    ```bash
+    cp .env.example .env
+4. Generate an application key:
+    ```bash
+    php artisan key:generate
+5. Configure your .env file with database credentials and other necessary settings.
+6. Run database migrations:
+    ```bash
+    php artisan migrate
+7. Start the Laravel development server:
+    ```bash
+    php artisan serve
+## Frontend Setup (Nuxt.js):
 
-Open a new terminal window and navigate to the frontend directory:
-bash
-Copy code
-cd asila-front
-Install dependencies:
-bash
-Copy code
-npm install
-Start the Nuxt.js development server:
-bash
-Copy code
-npm run dev
-Access the Application:
+1. Open a new terminal window and navigate to the frontend directory:
+    ```bash
+    cd asila-front
+2. Install dependencies:
+    ```bash
+    npm install
+3. Start the Nuxt.js development server:
+    ```bash
+    npm run dev
+## Access the Application:
 
 The backend should be running at http://localhost:8000.
 The frontend should be running at http://localhost:3000.
 Additional Resources:
 
-Nuxt.js Documentation: For more information on configuring and deploying the frontend, refer to the Nuxt.js documentation.
+- Nuxt.js Documentation: For more information on configuring and deploying the frontend, refer to the Nuxt.js documentation.
 
-Laravel Documentation: For detailed guidance on Laravel, visit the Laravel official documentation.
+- Laravel Documentation: For detailed guidance on Laravel, visit the Laravel official documentation.
 
 By following these steps, you can set up and run the ASILA project locally, allowing you to explore its features and functionalities.
