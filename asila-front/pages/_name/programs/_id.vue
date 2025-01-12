@@ -8,7 +8,10 @@
         {{selectedProgram.full_description}}
       </p>
       <div class="activity_imgs">
-        <CardActivity :img="activity.image" is_50 :name="activity.name" v-for="(activity, index) in selectedProgram.program_activities" :key="index"/>
+        <div v-for="(activity, index) in selectedProgram.program_activities" :key="index" class="activity_card_wrapper w-50" @click="navigateToActivity(activity.id)">
+          <!-- <CardActivity :img="activity.image" is_50 :name="activity.name"  /> -->
+          <CardActivity :img="activity.image" :name="activity.name"  />
+        </div>
       </div>
     </div>
   </div>
@@ -34,6 +37,10 @@ export default {
       const programId = this.$route.params.id;
       this.fetch_program_by_id({ programId });
     },
+    navigateToActivity(activityId) {
+    const cityName = this.$route.params.name;
+    this.$router.push({ path: `/${this.$i18n.locale}/${cityName}/activities/${activityId}`, query: { cityId: this.$route.query.cityId } });
+  }
   },
   async created() {
     if(this.$store.state.programs.selectedProgram.length == 0){
@@ -45,7 +52,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .full_description{
   font-weight: 500;
   font-size: var(--fs_xs_500);
@@ -53,10 +60,19 @@ export default {
   line-height: 180%;
   margin: 80px 0;
 }
-.activity_imgs{
+.activity_imgs {
   display: flex;
   gap: 24px;
   flex-wrap: wrap;
   width: 100%;
+}
+.activity_card_wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.w-50{
+  width: calc(50% - 12px);
 }
 </style>

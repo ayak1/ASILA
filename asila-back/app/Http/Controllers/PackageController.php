@@ -25,60 +25,61 @@ use App\Http\Requests\EditPackageRequest;
 use App\Http\Responses\PackageResponse;
 
 class PackageController extends Controller{
+
     public function index($lang = null){
-    $lang = $lang ?? request()->header('Accept-Language') ?? 'ar';
-    $locale = Locale::where('code', $lang)->first();
+        $lang = $lang ?? request()->header('Accept-Language') ?? 'ar';
+        $locale = Locale::where('code', $lang)->first();
 
-    $packages = Package::with([
-        'translations' => function ($query) use ($locale) {
-            $query->where('locale_id', $locale->id);
-        },
-        'packageDays.activities.translations' => function ($query) use ($locale) {
-            $query->where('locale_id', $locale->id);
-        },
-        'packageContains.translations' => function ($query) use ($locale) {
-            $query->where('locale_id', $locale->id);
-        },
-        'images',
-    ])->get();
+        $packages = Package::with([
+            'translations' => function ($query) use ($locale) {
+                $query->where('locale_id', $locale->id);
+            },
+            'packageDays.activities.translations' => function ($query) use ($locale) {
+                $query->where('locale_id', $locale->id);
+            },
+            'packageContains.translations' => function ($query) use ($locale) {
+                $query->where('locale_id', $locale->id);
+            },
+            'images',
+        ])->get();
 
-    $formattedPackages = [];
+        $formattedPackages = [];
 
-    foreach ($packages as $package) {
-        $formattedImages = [];
-        foreach ($package->images as $image) {
-            if ($image->is_cover != true) {
-                $formattedImages[] = ['path' => asset('storage/' . $image->path)];
+        foreach ($packages as $package) {
+            $formattedImages = [];
+            foreach ($package->images as $image) {
+                if ($image->is_cover != true) {
+                    $formattedImages[] = ['path' => asset('storage/' . $image->path)];
+                }
             }
-        }
-        $formattedPackage = [
-            'title' => $package->translations->first()->title,
-            'description' => $package->translations->first()->short_description,
-            'cover_image' => asset('storage/' . $package->images->firstWhere('is_cover', true)->path),
-            'images' => $formattedImages,
-            'days_activities' => [],
-        ];
+            $formattedPackage = [
+                'title' => $package->translations->first()->title,
+                'description' => $package->translations->first()->short_description,
+                'cover_image' => asset('storage/' . $package->images->firstWhere('is_cover', true)->path),
+                'images' => $formattedImages,
+                'days_activities' => [],
+            ];
 
-        foreach ($package->packageDays as $day) {
-            $formattedActivities = [];
-            foreach ($day->activities as $activity) {
-                $formattedActivities[] = [
-                    'name' => $activity->translations->first()->name,
-                    'description' => $activity->translations->first()->full_description,
-                    'image' => asset('storage/' . $activity->images->firstWhere('is_cover', true)->path),
+            foreach ($package->packageDays as $day) {
+                $formattedActivities = [];
+                foreach ($day->activities as $activity) {
+                    $formattedActivities[] = [
+                        'name' => $activity->translations->first()->name,
+                        'description' => $activity->translations->first()->full_description,
+                        'image' => asset('storage/' . $activity->images->firstWhere('is_cover', true)->path),
+                    ];
+                }
+
+                $formattedPackage['days_activities'][] = [
+                    'day_number' => $day->day_number,
+                    'activities' => $formattedActivities,
                 ];
             }
 
-            $formattedPackage['days_activities'][] = [
-                'day_number' => $day->day_number,
-                'activities' => $formattedActivities,
-            ];
+            $formattedPackages[] = $formattedPackage;
         }
 
-        $formattedPackages[] = $formattedPackage;
-    }
-
-    return response()->json(['packages' => $formattedPackages]);
+        return response()->json(['packages' => $formattedPackages]);
     }
     public function getByCity($cityId, Request $request)
     {

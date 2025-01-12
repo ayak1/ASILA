@@ -139,7 +139,7 @@ export default {
   letter-spacing: -0.506px;
   margin: 0 10px;
   padding-top: 7px;
-  width: fit-content;
+  width: 100%;
 }
 .sectionTitle{
   font-size: var(--fs_xs_700);
