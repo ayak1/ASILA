@@ -27,13 +27,13 @@ To build the frontend for production:
     npm run build
 - This generates static files in the .output directory. You can deploy these files to a static hosting platform.
 ## Configuration
-.Update environment variables in a .env file if required.
-.Customize settings in nuxt.config.js for additional configurations.
+- Update environment variables in a .env file if required.
+- Customize settings in nuxt.config.js for additional configurations.
 ## Deployment
-- For deployment, use a hosting service like Vercel, Netlify, or a custom server. For example:
-## Build the project:
+ For deployment, use a hosting service like Vercel, Netlify, or a custom server. For example:
+- Build the project:
     ```bash
     npm run build
-## Start the production server:
+- Start the production server:
     ```bash
     npm start
