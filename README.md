@@ -11,7 +11,6 @@ Deployment Instructions:
 Note: Ensure you have Node.js, npm, PHP, Composer, and a web server (e.g., Apache or Nginx) installed on your system.
 
 Clone the Repository:
-
     ```bash
     git clone https://github.com/ayak1/ASILA.git
     cd ASILA
