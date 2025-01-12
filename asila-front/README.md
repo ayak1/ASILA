@@ -22,7 +22,7 @@ Before setting up the project, ensure you have the following installed:
 4. Access the application in your browser at http://localhost:3000.
 
 ## Build for Production
-To build the frontend for production:
+- To build the frontend for production:
     ```bash
     npm run build
 - This generates static files in the .output directory. You can deploy these files to a static hosting platform.
